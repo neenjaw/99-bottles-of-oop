@@ -1,57 +1,36 @@
 class Bottles
-  def verse(n)
-    case n
-    when 2
-      verse_2()
-    when 1
-      verse_1()
-    when 0
-      verse_0()
-    else
-      verse_n(n)
-    end
-  end
-
-  def verses(start, finish)
-    (finish..start)
-      .to_a
-      .reverse
-      .map { |n| verse(n) }
-      .join("\n")
-  end
 
   def song
     verses(99, 0)
   end
 
-  private
-
-  def verse_n(n)
-    <<~VERSE
-      #{n} bottles of beer on the wall, #{n} bottles of beer.
-      Take one down and pass it around, #{n-1} bottles of beer on the wall.
-    VERSE
+  def verses(starting, ending)
+    starting.downto(ending).map {|i| verse(i)}.join("\n")
   end
 
-  def verse_2
-    <<~VERSE
-      2 bottles of beer on the wall, 2 bottles of beer.
-      Take one down and pass it around, 1 bottle of beer on the wall.
-    VERSE
-  end
-
-  def verse_1
-    <<~VERSE
-      1 bottle of beer on the wall, 1 bottle of beer.
-      Take it down and pass it around, no more bottles of beer on the wall.
-    VERSE
-  end
-
-  def verse_0
-    <<~VERSE
-      No more bottles of beer on the wall, no more bottles of beer.
-      Go to the store and buy some more, 99 bottles of beer on the wall.
-    VERSE
+  def verse(number)
+    case number
+    when 0
+      "No more bottles of beer on the wall, " +
+      "no more bottles of beer.\n" +
+      "Go to the store and buy some more, " +
+      "99 bottles of beer on the wall.\n"
+    when 1
+      "1 bottle of beer on the wall, " +
+      "1 bottle of beer.\n" +
+      "Take it down and pass it around, " +
+      "no more bottles of beer on the wall.\n"
+    when 2
+      "2 bottles of beer on the wall, " +
+      "2 bottles of beer.\n" +
+      "Take one down and pass it around, " +
+      "1 bottle of beer on the wall.\n"
+    else
+      "#{number} bottles of beer on the wall, " +
+      "#{number} bottles of beer.\n" +
+      "Take one down and pass it around, " +
+      "#{number-1} bottles of beer on the wall.\n"
+    end
   end
 
 end
